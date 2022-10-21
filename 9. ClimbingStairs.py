@@ -14,6 +14,19 @@ class Solution:
             i += 1
         
         return a[n-1]
+
+    def climbStairs2(self, n: int) -> int:
+        if n == 1: return 1
+        if n == 2: return 2
+        
+        a = [1, 2, 3]
+        i = 3
+        while i != n:
+            a = a[1:] + ['0']
+            a[2] = a[0] + a[1]
+            i += 1
+        
+        return a[2]
         
 # n = 2 => 2
 # n = 3 => 3
@@ -48,5 +61,6 @@ class Solution:
 
 
 s = Solution()
-print(s.climbStairs(10))
+print(s.climbStairs(38))
 # print(s.climbStairs(38))
+# print(s.climb(6))
