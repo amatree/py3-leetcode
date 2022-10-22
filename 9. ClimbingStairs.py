@@ -3,9 +3,30 @@ class Solution:
         if n == 1: return 1
         if n == 2: return 2
         if n == 3: return 3
-        return self.climbStairs(n-1) + self.climbStairs(n-2)
-        # TODO: use another method since recursion gets exponentially expensive after 30s 
         
+        a = [0]*(n-3)
+        a.insert(0, 3)
+        a.insert(0, 2)
+        a.insert(0, 1)
+        i = 3
+        while i < n:
+            a[i] = a[i-1] + a[i-2]
+            i += 1
+        
+        return a[n-1]
+
+    def climbStairs2(self, n: int) -> int:
+        if n == 1: return 1
+        if n == 2: return 2
+        
+        a = [1, 2, 3]
+        i = 3
+        while i != n:
+            a = a[1:] + ['0']
+            a[2] = a[0] + a[1]
+            i += 1
+        
+        return a[2]
         
 # n = 2 => 2
 # n = 3 => 3
@@ -16,6 +37,30 @@ class Solution:
 # n = 8 => 34
 # n = 9 => 55
 # n = 10 => 89
-        
+
+# n = 5
+[1, 1, 1, 1, 1] #1
+[1, 1, 1, 2] #4 
+[1, 2, 2] #3 [1, 2, 2] [2, 1, 2] [2, 2, 1]
+
+# n = 6
+[1, 1, 1, 1, 1, 1] #1
+[1, 1, 1, 1, 2] #5 [1, 1, 1, 1, 2] [1, 1, 1, 2, 1] [1, 1, 2, 1, 1] [1, 2, 1, 1, 1] [2, 1, 1, 1, 1]
+[1, 1, 2, 2] #6 [1, 1, 2, 2] [1, 2, 1, 2] [2, 1, 1, 2] [2, 1, 2, 1] [2, 2, 1, 1] [1, 2, 2, 1]
+[2, 2, 2] #1
+
+# n = 7
+[1, 1, 1, 1, 1, 1, 1] #1
+[1, 1, 1, 1, 1, 2] #6
+[1, 1, 1, 2, 2] #9
+                # [1, 1, 1, 2, 2] [1, 1, 2, 1, 2] [1, 2, 1, 1, 2] [2, 1, 1, 1, 2] 
+                # [2, 1, 1, 2, 1] [2, 1, 2, 1, 1] [2, 2, 1, 1, 1]
+                # [1, 1, 2, 2, 1] [1, 2, 2, 1, 1]
+[1, 2, 2] #3
+
+
+
 s = Solution()
 print(s.climbStairs(38))
+# print(s.climbStairs(38))
+# print(s.climb(6))
