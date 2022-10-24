@@ -7,17 +7,20 @@ class Solution:
         result.append([1, 2, 1])
         if numRows == 3: return result
         
-        p = 3
-        while p is not numRows:
-            for i in len(result[p-2]):
-                
-            p += 1 
+        currRow = 3
+        while currRow < numRows:
+            req_calcs = currRow - 1
+            tmp = [1, 1]
+            for i in range(req_calcs):
+                tmp.insert(i+1, result[currRow-1][i] + result[currRow-1][i+1])
+                    
+            result.append(tmp)
+            currRow += 1 
             
-        print(result)  
         return result
 
 s = Solution()
 
-r = s.generate(4)
+r = s.generate(6)
 
 print(r)
