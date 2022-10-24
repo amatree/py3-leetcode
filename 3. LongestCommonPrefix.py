@@ -35,4 +35,4 @@ class Solution(object):
             
 t = Solution()
 strs = ["flow", "flower", "fleet"]
-print(t.longestCommonPrefix(strs))
+print(t.longestCommonPrefix_fast(strs))
