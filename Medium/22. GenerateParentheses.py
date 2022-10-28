@@ -1,22 +1,22 @@
 class Solution:
-    def insertTo(self, toStr, index):
-        return toStr[:index] + "()" + toStr[index:]
-
     def generateParenthesis(self, n: int) -> list[str]:
-        result = ["()"*n]
-        if n == 1:
-            return result
+        stack = []
+        result = []
         
-        open = 0
-        closed = 0
+        def backtrack(open, closed):
+            if open == closed == n:
+                result.append("".join(stack))
+                return
+            if open < n:
+                stack.append("(")
+                backtrack(open + 1, closed)
+                stack.pop()
+            if closed < open:
+                stack.append(")")
+                backtrack(open, closed + 1)
+                stack.pop()
         
-        while open + closed < n:
-                tmp = ""
-                if open == closed:
-                        tmp += "("
-                        open += 1
-                if 
-
+        backtrack(0,0)
         return result
 # n=2:
 # me: ["(())","()()"]
@@ -49,4 +49,3 @@ num = 4
 p = s.generateParenthesis(num)
 
 print(p)
-print("is my solution correct?", "YES LESGOO!" if p == sols[num] else "NOPE")
